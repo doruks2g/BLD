@@ -1,6 +1,10 @@
 
 # bld - Minimalist C-Based Package Manager
 
+PROFESYONEL KULLANIM İÇİN DEĞİLDİR!
+
+EL YAPIMI BİR SİSTEMDİR APT VB. PAKET YÖNETİCİLERİ GİBİ TEK PAKET YÖNETİCİSİ OLARAK KULLANIMA UYGUN DEĞİLDİR BİR HOBİ PROJESİDİR
+
 `bld`, Linux sistemler için C ile yazılmış, hafif, hızlı ve harici bir GitHub reçete deposundan (`repository`) beslenen minimalist bir kaynak tabanlı paket yöneticisidir. 
 
 Açık kaynak projeleri kendi bilgisayarınızda ayrıştırılmış (`staging`) alanlarda derler ve sistem genelinde kullanılabilmesi için `/usr/local/bin` altına otomatik sembolik link (`symlink`) bağlar.

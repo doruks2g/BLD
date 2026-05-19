@@ -24,3 +24,32 @@ gcc -O3 bld.c -o bld -Wno-format-truncation
 
 # Binary'yi küresel dizine kopyalayın
 sudo cp bld /usr/local/bin/
+
+Kullanım
+1. Reçete Deposunu Güncelleme
+Uzak GitHub reposundaki en güncel .bld reçete dosyalarını yerel bilgisayarınıza çekmek için:
+
+Bash
+bld update
+2. Paket Kurma
+Reçetesi bulunan bir paketi kaynak kodundan indirip derlemek ve kurmak için ($HOME dizinini korumak için -E bayrağı gereklidir):
+
+Bash
+sudo -E bld install <paket_adı>
+Örnek: sudo -E bld install neofetch
+
+3. Paket Kaldırma
+Kurulan bir paketi ve oluşturulan sembolik linkleri sistemden tamamen temizlemek için:
+
+Bash
+sudo -E bld remove <paket_adı>
+Reçete Yapısı (.bld)
+Reçete dosyaları çok basittir ve ana depoda <paket_adı>.bld şeklinde saklanır. Örnek neofetch.bld içeriği:
+
+Plaintext
+NAME:neofetch
+VERSION:7.1.0
+URL:[https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz](https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz)
+BUILD:printf "Derleme adımı gerekmiyor.\n"
+INSTALL:mkdir -p "$PKG_DIR/bin" && cp neofetch "$PKG_DIR/bin/"
+Bu proje açık kaynak topluluğuna katkı sağlamak ve Linux sistem programlama mantığını anlamak için geliştirilmiştir. 🌟

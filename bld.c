@@ -13,7 +13,7 @@
 #define PATH_LIMIT     4096
 #define CMD_LIMIT      20000
 
-// Senin gerçek GitHub Reçete Depon
+
 #define RECIPE_REPO_URL "https://github.com/doruks2g/bld-recipes.git"
 
 char BASE_DIR[PATH_LIMIT];
@@ -47,10 +47,10 @@ void init_folders() {
     char cmd[CMD_LIMIT];
     snprintf(cmd, sizeof(cmd), "mkdir -p '%.4095s' '%.4095s' '%.4095s'", 
              CACHE_DIR, SRC_DIR, PKGS_DIR);
-    if (system(cmd) != 0) { /* Dizin kontrolü */ }
+    if (system(cmd) != 0) { }
     
     snprintf(cmd, sizeof(cmd), "mkdir -p '%.4095s'", BASE_DIR);
-    if (system(cmd) != 0) { /* Üst dizin kontrolü */ }
+    if (system(cmd) != 0) { }
 }
 
 void update_recipes() {
@@ -113,7 +113,7 @@ void install_package(const char *pkg_name) {
 
     char cmd[CMD_LIMIT];
 
-    // 1. İndirme adımı
+    
     printf("[+] %s (%s) indiriliyor...\n", recipe.name, recipe.version);
     snprintf(cmd, sizeof(cmd), "wget -q --show-progress -O '%.4000s/%.128s-%.64s.tar.gz' '%.512s'", 
              CACHE_DIR, recipe.name, recipe.version, recipe.url);
@@ -122,7 +122,7 @@ void install_package(const char *pkg_name) {
         return;
     }
 
-    // 2. Arşivi Açma adımı
+    
     printf("[+] Arşiv açılıyor...\n");
     snprintf(cmd, sizeof(cmd), "tar -xf '%.4000s/%.128s-%.64s.tar.gz' -C '%.4000s/'", 
              CACHE_DIR, recipe.name, recipe.version, SRC_DIR);
@@ -131,7 +131,7 @@ void install_package(const char *pkg_name) {
         return;
     }
 
-    // 3. Derleme adımı
+   
     char specific_src_dir[PATH_LIMIT];
     snprintf(specific_src_dir, sizeof(specific_src_dir), "%.4000s/%.128s-%.64s", SRC_DIR, recipe.name, recipe.version);
     printf("[+] Derleniyor: %s\n", recipe.build_cmd);
@@ -141,7 +141,7 @@ void install_package(const char *pkg_name) {
         return;
     }
 
-    // 4. Hedef Klasöre Kurulum (Staging) adımı
+    
     char specific_pkg_dir[PATH_LIMIT];
     snprintf(specific_pkg_dir, sizeof(specific_pkg_dir), "%.4000s/%.128s-%.64s", PKGS_DIR, recipe.name, recipe.version);
     
@@ -150,10 +150,10 @@ void install_package(const char *pkg_name) {
 
     printf("[+] Paket dizinine taşınıyor...\n");
     
-    // Alt süreçlerin (system komutlarının) okuyabilmesi için PKG_DIR ortam değişkenini tanımlıyoruz
+    
     setenv("PKG_DIR", specific_pkg_dir, 1);
     
-    // Reçetedeki komut artık doğrudan $PKG_DIR yapısını özgürce, birden çok kez kullanabilir
+   
     snprintf(cmd, sizeof(cmd), "cd '%.4000s' && %.1024s", specific_src_dir, recipe.install_cmd);
     
     if (system(cmd) != 0) {
@@ -161,7 +161,7 @@ void install_package(const char *pkg_name) {
         return;
     }
 
-    // 5. Küresel Sembolik Link Bağlama adımı
+
     char target_binary[PATH_LIMIT];
     char system_link[PATH_LIMIT];
     snprintf(target_binary, sizeof(target_binary), "%.4000s/bin/%.128s", specific_pkg_dir, recipe.name);

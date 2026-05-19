@@ -53,7 +53,8 @@ Reçete dosyaları çok basittir ve ana depoda <paket_adı>.bld şeklinde saklan
 Plaintext
 NAME:neofetch
 VERSION:7.1.0
-URL:[https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz](https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz)
-BUILD:printf "Derleme adımı gerekmiyor.\n"
-INSTALL:mkdir -p "$PKG_DIR/bin" && cp neofetch "$PKG_DIR/bin/"
+URL:https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz
+BUILD:true
+INSTALL:cp neofetch $PKG_DIR/bin/
+DEPS:
 Bu proje açık kaynak topluluğuna katkı sağlamak ve Linux sistem programlama mantığını anlamak için geliştirilmiştir. 🌟
